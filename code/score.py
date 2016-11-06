@@ -4,8 +4,7 @@
 # to search for specific time
 # to seach specific competition
 # Change time to Bangladesh Time
-
-
+# Create GUI
 
 
 import bs4, requests
@@ -27,19 +26,27 @@ if dateToday.hour == 0 and dateToday.minute <30:
 
 date = dateToday.strftime('%Y-%m-%d')
 
+# league name to display information
+# goal.com used an ID to identify leagues;
+# so the dictionary will dereference the ID to league name
 leagueName = ('Premier League', 'Primera División', 'Serie A','Bundesliga','Ligue 1','UEFA Champions League')
 leagueId = {'8':'Premier League', '7':'Primera División', '9':'Bundesliga', '13':'Serie A', '16':'Ligue 1', '10':'UEFA Champions League'}
 
 # Many Comp has same Name; There is two Premier League.
 # I only want EPL, 1st One
 # So if I encounter Premier League I need to set its flag as 1
+# This way I can get EPL, which is my target
 leagueFlag = {'Premier League':0, 'Primera División':0,'Serie A':0, 'Bundesliga':0,'Ligue 1':0, 'UEFA Champions League':0}
 
+# URL of the pages to scan
 liveUrl = 'http://goal.com/en-india/live-scores'
 fixtureUrl = 'http://goal.com/en-india/fixtures/'
 
-def getMatches():
 
+def getMatches():
+    '''This function parses the score page and gets current score
+    and returns a list of team name and score '''
+    
     res = requests.get(liveUrl)
     soup = bs4.BeautifulSoup(res.text, 'lxml')
     matchDay=soup.find(lambda tag: tag.name=='section' and tag.get('class')==['matchday'] and tag.get('data-day')==date)
@@ -80,6 +87,8 @@ def getMatches():
     return matchList
 
 def getFixture(date):
+    '''This function will scan the fixture page to get fixtures of 
+    matches to be played in the selected leagues '''
 
     i = 0
 
@@ -122,9 +131,9 @@ def getFixture(date):
     return l
 
 
-matchInfo = getMatches()
-
 def printMatch():
+    '''This function prints score of the matches'''
+    
     for matches in matchInfo:
         print(matches[0])
         print('-'*len(matches[0]))
@@ -132,9 +141,11 @@ def printMatch():
             print(match[0], match[1],match[2],match[3])
         print()
 
-printMatch()
+matchInfo = getMatches()
 
+printMatch()
 
 f = getFixture('2015-09-22')
 
-print(f)
+#print(f)
+# getting fixtures is still in process
