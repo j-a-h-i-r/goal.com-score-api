@@ -47,7 +47,7 @@ liveUrl = 'http://goal.com/en-india/live-scores'
 fixtureUrl = 'http://goal.com/en-india/fixtures/'
 
 
-def getMatches():
+def getLiveMatches():
     '''
     - send scores of live matches
     This will send data for live matches only
@@ -165,7 +165,7 @@ def getFixture(date):
 def printMatchInfo(matchInfo):
     for matches in matchInfo:
         print(matches[0])
-        print('-'*len(matches[0]))
+        print('-' * len(matches[0]))
 
         if(len(matches) == 1):
             print("No matches!")
@@ -177,9 +177,10 @@ def printMatchInfo(matchInfo):
         print()
 
 
-matchInfo = getMatches()
-printMatchInfo(matchInfo)
+if __name__ == "__main__":
+    matchInfo = getLiveMatches()
+    printMatchInfo(matchInfo)
 
-print("Fixture")
-fixtureInfo = getFixture('2017-02-27')
-printMatchInfo(fixtureInfo)
+    print("Fixture")
+    fixtureInfo = getFixture('2017-02-27')
+    printMatchInfo(fixtureInfo)
