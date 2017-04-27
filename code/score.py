@@ -117,9 +117,7 @@ def getLiveMatches():
 def getFixture(date):
     '''
     - Send Fixtures of matches played/to be played in "date"
-    '''
 
-    '''
     - Fixture will be stored in a list where all competition will be in their own list
     - Format:  [ [comp1, (status, Home1, Away1), .... ],
                  [comp2, (status, Home2, Away2), .... ] ]
