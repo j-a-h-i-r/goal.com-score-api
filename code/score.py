@@ -141,7 +141,7 @@ def getFixture(date):
         compList = []
         compList.append(leagueId[id])
 
-        matches = comp.find_all('tr', {'class': ' clickable '})
+        matches = comp.find_all('tr', {'class': 'clickable '})
 
         for match in matches:
 
@@ -180,5 +180,5 @@ if __name__ == "__main__":
     printMatchInfo(matchInfo)
 
     print("Fixture")
-    fixtureInfo = getFixture('2017-02-27')
+    fixtureInfo = getFixture('2017-05-08')
     printMatchInfo(fixtureInfo)

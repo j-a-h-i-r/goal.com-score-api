@@ -5,8 +5,6 @@ LABEL_FONT = ("", 12, "bold")
 
 
 class App(tk.Tk):
-    # root = tk.Tk()
-    # root.geometry("200x300+500+200")
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -80,7 +78,7 @@ class Fixture(tk.Frame):
         self.goBack(controller)
 
     def showFixture(self):
-        fixture = score.getFixture("2017-04-27")
+        fixture = score.getFixture("2017-05-08")
         for comp in fixture:
             if len(comp) == 1:
                 # continue
