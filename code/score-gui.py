@@ -1,4 +1,4 @@
-import score
+import goal
 import tkinter as tk
 
 LABEL_FONT = ("", 12, "bold")
@@ -51,18 +51,26 @@ class LiveMatch(tk.Frame):
         self.goBack(controller)
 
     def showLive(self):
-        liveMatches = score.getLiveMatches()
-        for comp in liveMatches:
-            if len(comp) == 1:
-                # continue
-                pass
-            label = tk.Label(master=self, text=comp[0], borderwidth="4",
-                             justify="left", anchor="e",
-                             font=LABEL_FONT, fg="blue")
+        liveMatches = goal.getLiveMatches()
+        competitions = liveMatches['competitions']
+        for comp in competitions:
+            compTitle = comp['title']
+            matches = comp['matches']
+            if len(matches) == 0:
+                continue
+            label = tk.Label(master=self, text=compTitle, borderwidth="4",
+                            justify="left", anchor="e",
+                            font=LABEL_FONT, fg="blue")
             label.pack()
-            for matches in comp[1:]:
-                match = matches[0] + " " + matches[1] + \
-                    " " + " " + matches[2] + " " + matches[3]
+            for match in matches:
+                teams = match['teams']
+                homeTeamTitle = teams['home']['title']
+                awayTeamTitle = teams['away']['title']
+                score = match['score']
+                homeScore = score['home']
+                awayScore = score['away']
+                state = match['state']
+                match = "({}) {} {} - {} {}".format(state, homeTeamTitle, homeScore, awayScore, awayTeamTitle)
                 tk.Label(master=self, text=match, font="12").pack()
 
     def goBack(self, controller):
@@ -78,16 +86,25 @@ class Fixture(tk.Frame):
         self.goBack(controller)
 
     def showFixture(self):
-        fixture = score.getFixture("2017-05-08")
-        for comp in fixture:
-            if len(comp) == 1:
-                # continue
-                pass
-            compName = comp[0]
-            tk.Label(master=self, text=compName, font=LABEL_FONT, fg="blue").pack()
-            for matches in comp[1:]:
-                match = matches[0] + " " + matches[1] + " " + matches[2]
-                tk.Label(master=self, text=match).pack()
+        fixture = goal.getFixtureMatches("2020-08-08")
+        competitions = fixture['competitions']
+
+        for comp in competitions:
+            compTitle = comp['title']
+            matches = comp['matches']
+            if len(matches) == 0:
+                continue
+            label = tk.Label(master=self, text=compTitle, borderwidth="4",
+                            justify="left", anchor="e",
+                            font=LABEL_FONT, fg="blue")
+            label.pack()
+            for match in matches:
+                teams = match['teams']
+                homeTeamTitle = teams['home']['title']
+                awayTeamTitle = teams['away']['title']
+                matchTime = match['time']
+                match = "{} | {} - {}".format(matchTime, homeTeamTitle, awayTeamTitle)
+                tk.Label(master=self, text=match, font="12").pack()
 
     def goBack(self, controller):
         backbtn = tk.Button(master=self, text="Back",
