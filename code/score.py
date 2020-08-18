@@ -44,7 +44,7 @@ leagueFlag = {'Premier League': 0, 'Primera División': 0, 'Serie A': 0,
 - url for match fixture
 '''
 liveUrl = 'http://goal.com/en-india/live-scores'
-fixtureUrl = 'http://goal.com/en-india/fixtures/'
+fixtureUrl = 'https://www.goal.com/en-in/fixtures/'
 
 
 def getLiveMatches():
