@@ -45,8 +45,8 @@ class Competitions(Resource):
 
 
 api.add_resource(LiveMatches, '/live')
-api.add_resource(FixtureMatches, '/fixture')
-api.add_resource(Competitions, '/competition')
+api.add_resource(FixtureMatches, '/fixtures')
+api.add_resource(Competitions, '/competitions')
 
 if __name__ == '__main__':
     app.run(debug=True)
