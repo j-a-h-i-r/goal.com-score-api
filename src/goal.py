@@ -1,5 +1,6 @@
 import live
 import fixture
+import competitions
 
 import util
 
@@ -17,3 +18,7 @@ def getFixtureMatches(fixtureDate = ''):
     fixtureUrl = FIXTURE_URL + fixtureDate
     fixtureMatches = fixture.getFixtureMatches(fixtureUrl)
     return fixtureMatches
+
+def getCompetitions(competitionType):
+    allCompetitions = competitions.getCompetitions(competitionType)
+    return allCompetitions
