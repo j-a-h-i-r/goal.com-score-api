@@ -20,4 +20,4 @@ Get a list of Competitions.
 Supported parameters,   
 - `competition_type` (*required*)
   - `all` Get list of ALL competitions grouped by Region/League
-  - `popular` Get only the Popular competitions
+  - `popular` Get only the Popular competitions (Top 5 leagues)
